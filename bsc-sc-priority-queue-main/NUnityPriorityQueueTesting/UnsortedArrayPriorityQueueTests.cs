@@ -19,14 +19,14 @@ namespace NUnityPriorityQueueTesting
         }
 
         [Test]
-        public void TestEmptyQueueShouldThrowPeek()
+        public void TestEmptyQueueThrowPeek()
         {
             UnsortedArrayPriorityQueue<string> queue = new UnsortedArrayPriorityQueue<string>(5);
             Assert.Throws<QueueUnderflowException>(() => queue.Peek());
         }
 
         [Test]
-        public void TestEmptyQueueShouldThrowDequeue()
+        public void TestEmptyQueueThrowDequeue()
         {
             UnsortedArrayPriorityQueue<string> queue = new UnsortedArrayPriorityQueue<string>(5);
             Assert.Throws<QueueUnderflowException>(() => queue.Dequeue());
@@ -63,7 +63,7 @@ namespace NUnityPriorityQueueTesting
         }
 
         [Test]
-        public void TestFullQueueOverflow()
+        public void TestFullQueue()
         {
             UnsortedArrayPriorityQueue<string> queue = new UnsortedArrayPriorityQueue<string>(2);
             queue.Enqueue("Blue", 2);
