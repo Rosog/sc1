@@ -8,33 +8,33 @@ using PriorityQueue;
 
 namespace NUnityPriorityQueueTesting
 {
-    public class SortedLinkedPriorityQueueTests
+    public class HeapPriorityQueueTests
     {
         [Test]
         public void TestNewQueueEmpty()
         {
-            SortedLinkedPriorityQueue<string> queue = new SortedLinkedPriorityQueue<string>();
+            HeapPriorityQueue<string> queue = new HeapPriorityQueue<string>(5);
             Assert.That(queue.IsEmpty(), Is.True);
         }
 
         [Test]
         public void TestEmptyQueueThrowPeek()
         {
-            SortedLinkedPriorityQueue<string> queue = new SortedLinkedPriorityQueue<string>();
+            HeapPriorityQueue<string> queue = new HeapPriorityQueue<string>(5);
             Assert.Throws<QueueUnderflowException>(() => queue.Peek());
         }
 
         [Test]
         public void TestEmptyQueueThrowDequeue()
         {
-            SortedLinkedPriorityQueue<string> queue = new SortedLinkedPriorityQueue<string>();
+            HeapPriorityQueue<string> queue = new HeapPriorityQueue<string>(5);
             Assert.Throws<QueueUnderflowException>(() => queue.Dequeue());
         }
 
         [Test]
         public void TestReturnHighestPriorityItem()
         {
-            SortedLinkedPriorityQueue<string> queue = new SortedLinkedPriorityQueue<string>();
+            HeapPriorityQueue<string> queue = new HeapPriorityQueue<string>(5);
             queue.Enqueue("Blue", 2);
             queue.Enqueue("Red", 5);
             queue.Enqueue("Green", 1);
@@ -42,9 +42,18 @@ namespace NUnityPriorityQueueTesting
         }
 
         [Test]
-        public void TestDequeueHighest()
+        public void TestFullQueue()
         {
-            SortedLinkedPriorityQueue<string> queue = new SortedLinkedPriorityQueue<string>();
+            HeapPriorityQueue<string> queue = new HeapPriorityQueue<string>(2);
+            queue.Enqueue("Blue", 2);
+            queue.Enqueue("Red", 5);
+            Assert.Throws<QueueOverflowException>(() => queue.Enqueue("Green", 1));
+        }
+
+        [Test]
+        public void TestDequeueRemoveHighest()
+        {
+            HeapPriorityQueue<string> queue = new HeapPriorityQueue<string>(5);
             queue.Enqueue("Blue", 2);
             queue.Enqueue("Red", 5);
             queue.Enqueue("Green", 1);
@@ -53,23 +62,24 @@ namespace NUnityPriorityQueueTesting
         }
 
         [Test]
-        public void TestOneDequeue()
+        public void TestOneItemDequeue()
         {
-            SortedLinkedPriorityQueue<string> queue = new SortedLinkedPriorityQueue<string>();
-
+            HeapPriorityQueue<string> queue = new HeapPriorityQueue<string>(5);
             queue.Enqueue("Blue", 2);
             queue.Dequeue();
-
             Assert.That(queue.IsEmpty(), Is.True);
         }
 
         [Test]
-        public void TestMultipleDequeues()
+        public void TestMultipleDequeue()
         {
-            SortedLinkedPriorityQueue<string> queue = new SortedLinkedPriorityQueue<string>();
+            HeapPriorityQueue<string> queue = new HeapPriorityQueue<string>(10);
             queue.Enqueue("Blue", 2);
             queue.Enqueue("Red", 5);
             queue.Enqueue("Green", 1);
+            queue.Enqueue("Yellow", 8);
+            Assert.That(queue.Peek(), Is.EqualTo("Yellow"));
+            queue.Dequeue();
             Assert.That(queue.Peek(), Is.EqualTo("Red"));
             queue.Dequeue();
             Assert.That(queue.Peek(), Is.EqualTo("Blue"));
