@@ -38,6 +38,9 @@ namespace TestProgram
                 case 3:
                     InitSortedLinkedQueue();
                     break;
+                case 4:
+                    InitHeapQueue();
+                    break;
             }
         }
 
@@ -63,6 +66,12 @@ namespace TestProgram
         {
             queue = new SortedLinkedPriorityQueue<Person>();
             Lbl_Output.Text = "New sorted linked priority queue created";
+        }
+
+        private void InitHeapQueue()
+        {
+            queue = new HeapPriorityQueue<Person>(100);
+            Lbl_Output.Text = "New sorted heap priority queue created";
         }
 
         private void Btn_AddQueue_Click(object sender, EventArgs e)
