@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PriorityQueue
 {
@@ -81,12 +77,10 @@ namespace PriorityQueue
             while (current != null)
             {
                 output += current.data;
-
                 if (current.next != null)
                 {
                     output += ", ";
                 }
-
                 current = current.next;
             }
             output += "]";
