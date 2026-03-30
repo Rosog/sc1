@@ -35,6 +35,9 @@ namespace TestProgram
                 case 2:
                     InitUnsortedLinkedQueue();
                     break;
+                case 3:
+                    InitSortedLinkedQueue();
+                    break;
             }
         }
 
@@ -52,8 +55,14 @@ namespace TestProgram
 
         private void InitUnsortedLinkedQueue()
         {
-            queue = new UnsortedArrayPriorityQueue<Person>(100);
+            queue = new UnsortedLinkedPriorityQueue<Person>();
             Lbl_Output.Text = "New unsorted linked priority queue created";
+        }
+
+        private void InitSortedLinkedQueue()
+        {
+            queue = new SortedLinkedPriorityQueue<Person>();
+            Lbl_Output.Text = "New sorted linked priority queue created";
         }
 
         private void Btn_AddQueue_Click(object sender, EventArgs e)
