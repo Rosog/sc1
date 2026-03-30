@@ -34,7 +34,7 @@ namespace PriorityQueue
         {           
             if (IsEmpty())
             {
-                throw new QueueUnderflowException("Empty...");
+                throw new QueueUnderflowException();
             }
             int highIndex = GetHighIndex();
             return items[highIndex].Item;
@@ -77,7 +77,7 @@ namespace PriorityQueue
         {
             if (IsEmpty())
             {
-                throw new QueueUnderflowException();
+                throw new QueueUnderflowException("Empty..");
             }
             string output = "[";
             for (int i = 0; i <= last; i++)
