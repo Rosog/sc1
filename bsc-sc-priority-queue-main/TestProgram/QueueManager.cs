@@ -24,9 +24,14 @@ namespace TestProgram
             Panel_Actions.Visible = true;
             Panel_Output.Visible = true;
 
-            if (CB_Implementation.SelectedIndex == 0)
+            switch (CB_Implementation.SelectedIndex)
             {
-                InitSortedArrayQueue();
+                case 0:
+                    InitSortedArrayQueue();
+                    break;
+                case 1:
+                    InitUnsortedArrayQueue();
+                    break;
             }
         }
 
@@ -34,6 +39,12 @@ namespace TestProgram
         {
             queue = new SortedArrayPriorityQueue<Person>(100);
             Lbl_Output.Text = "New sorted array priority queue created";
+        }
+
+        private void InitUnsortedArrayQueue()
+        {
+            queue = new UnsortedArrayPriorityQueue<Person>(100);
+            Lbl_Output.Text = "New unsorted array priority queue created";
         }
 
         private void Btn_AddQueue_Click(object sender, EventArgs e)
